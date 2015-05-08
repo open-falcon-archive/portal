@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}Falcon</title>
+
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/logo.png') }}"/>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}?v=100"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layer/skin/layer.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/g.css') }}?v=100"/>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='layer/layer.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='layer/extend/layer.ext.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/moment-with-locales.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/g.js') }}"></script>
+</head>
+<body>
+<header role="banner">
+    <div style="margin: 20px 10px; {% if g.xbox %}display: none;{% endif %}">
+        <div class="pull-left" style="margin-right: 10px;">
+            <a href="/">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" width="60px"
+                     height="60px">
+            </a>
+        </div>
+        <div class="pull-left">
+            <h1 style="font-weight: bold; font-family: Georgia,Times,'Times New Roman',serif; margin-top: 10px;">
+                Falcon
+            </h1>
+        </div>
+
+        <div class="pull-left" style="margin-left: 20px; margin-top: 10px;">
+            <ul class="nav nav-pills" role="tablist">
+                <li role="presentation" class="{% if not g.menu %}active{% endif %}"><a href="/">HostGroups</a></li>
+                <li role="presentation" class="{% if g.menu == 'templates' %}active{% endif %}"><a href="{{ url_for('templates_get') }}">Templates</a></li>
+                <li role="presentation" class="{% if g.menu == 'expressions' %}active{% endif %}"><a href="{{ url_for('expressions_get') }}">Expressions</a></li>
+            </ul>
+        </div>
+
+        <div class="pull-right">
+            welcome, {{ g.user_name }}
+        </div>
+        <div style="clear: both;"></div>
+        <hr>
+    </div>
+</header>
+<div style="margin: 0 10px;{% if g.xbox %}margin-top: 10px;{% endif %}">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>
