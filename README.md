@@ -1,7 +1,7 @@
 falcon portal
 ============
 
-## install dependency
+## Install dependency
 
     # yum install -y python-virtualenv
 
@@ -12,19 +12,19 @@ falcon portal
     $ ./env/bin/pip install -r pip_requirements.txt -i http://pypi.douban.com/simple
 
 
-## init database and config
+## Init database and config
 
 - database schema: scripts/schema.sql
 - database config: frame/config.py
 
-## start
+## Start
 
     $ ./env/bin/python wsgi.py
 
     --> goto http://127.0.0.1:5050
 
 
-## run with gunicorn
+## Run with gunicorn
 
     $ . env/bin/activate
     $ bash run.sh
