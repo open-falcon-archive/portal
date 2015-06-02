@@ -21,6 +21,8 @@ UIC_ADDRESS = {
     'external': 'http://11.11.11.11:8080',
 }
 
+UIC_TOKEN = ''
+
 MAINTAINERS = ['root']
 CONTACT = 'ulric.qin@gmail.com'
 
