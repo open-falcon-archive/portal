@@ -7,7 +7,7 @@ DEBUG = True
 # -- db config --
 DB_HOST = "127.0.0.1"
 DB_PORT = 3306
-DB_USER = "falcon_portal"
+DB_USER = "root"
 DB_PASS = ""
 DB_NAME = "falcon_portal"
 
@@ -22,10 +22,8 @@ PERMANENT_SESSION_LIFETIME = 3600 * 24 * 30
 
 UIC_ADDRESS = {
     'internal': 'http://127.0.0.1:8080',
-    'external': 'http://uic.example.com',
+    'external': 'http://11.11.11.11:8080',
 }
-
-UIC_TOKEN = ''
 
 MAINTAINERS = ['root']
 CONTACT = 'ulric.qin@gmail.com'
