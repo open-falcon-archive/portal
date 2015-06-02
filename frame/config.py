@@ -11,10 +11,6 @@ DB_USER = "root"
 DB_PASS = ""
 DB_NAME = "falcon_portal"
 
-# -- mc config --
-MEMCACHED_SERVERS = ["127.0.0.1:11211"]
-MEMCACHED_PREFIX = 'portal.0.'
-
 # -- cookie config --
 SECRET_KEY = "4e.5tyg8-u9ioj"
 SESSION_COOKIE_NAME = "falcon-portal"
