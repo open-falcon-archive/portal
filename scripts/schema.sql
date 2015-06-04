@@ -16,6 +16,7 @@ CREATE TABLE host
   plugin_version VARCHAR(128) NOT NULL DEFAULT '',
   maintain_begin INT UNSIGNED NOT NULL DEFAULT 0,
   maintain_end   INT UNSIGNED NOT NULL DEFAULT 0,
+  update_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   UNIQUE KEY idx_host_hostname (hostname)
 )
