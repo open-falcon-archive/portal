@@ -230,9 +230,28 @@ function query_expression() {
     window.location.href = '/expressions?q=' + query + '&mine=' + mine;
 }
 
+function query_nodata() {
+    var query = $.trim($("#query").val());
+    var mine = document.getElementById('mine').checked ? 1 : 0;
+    window.location.href = '/nodatas?q=' + query + '&mine=' + mine;
+}
+
 function delete_expression(id) {
     my_confirm('确定要删除？？？', ['确定', '取消'], function () {
         $.getJSON('/expression/delete/' + id, {}, function (json) {
+            handle_quietly(json, function () {
+                location.reload();
+            });
+        })
+    }, function () {
+        return false;
+    });
+}
+
+
+function delete_nodata(id) {
+    my_confirm('确定要删除？？？', ['确定', '取消'], function () {
+        $.getJSON('/nodata/delete/' + id, {}, function (json) {
             handle_quietly(json, function () {
                 location.reload();
             });
@@ -287,6 +306,25 @@ function pause_expression(id) {
             }
         }
     });
+}
+
+function update_nodata() {
+    $.post(
+        '/nodata/update',
+        {
+            'endpoint': $.trim($("#endpoint").val()),
+            'metric': $.trim($("#metric").val()),
+            'tags': $.trim($("#tags").val()),
+            'dstype': $.trim($("#dstype").val()),
+            'step': $.trim($("#step").val()),
+            'mock': $.trim($("#mock").val()),
+            'cluster': $.trim($("#cluster").val()),
+            'nodata_id': $.trim($("#nodata_id").val())
+        },
+        function (json) {
+            handle_quietly(json);
+        }
+    );
 }
 
 function make_select2_for_uic_group(selector) {

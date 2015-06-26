@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block content %}
+    <style type="text/css">
+        span.f1 {display: inline-block; width: 66px;}
+    </style>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='select2/select2.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/select2-bootstrap.css') }}"/>
+    <script type="text/javascript" src="{{ url_for('static', filename='select2/select2.min.js') }}"></script>
+
+    <input type="hidden" id="nodata_id" value="{{ data.nodata.id }}">
+    <div class="panel panel-default">
+        <div class="panel-heading">{% if data.nodata.id %}modify{% else %}add{% endif %} nodata</div>
+        <div class="panel-body">
+            <div class="form-inline mt10" role="form">
+                <span class="f1">endpoint</span> 
+                <input type="text" placeholder="host.name" value="{{ data.nodata.endpoint }}" class="form-control" id="endpoint" style="width: 300px;">
+            </div>
+            <div class="form-inline mt10" role="form">
+                <span class="f1">metric</span> 
+                <input type="text" placeholder="metric" value="{{ data.nodata.metric }}" class="form-control" id="metric" style="width: 300px;">
+            </div>
+            <div class="form-inline mt10" role="form">
+                <span class="f1">tags</span> 
+                <input type="text" {% if not data.nodata.id %}placeholder="pdl=falcon svr=nodata"{% endif %} value="{{ data.nodata.tags }}" class="form-control" id="tags" style="width: 300px;">
+            </div>
+            <div class="form-inline mt10" role="form">
+                <span class="f1">dstype</span> 
+                <select class="form-control" id="dstype" style="width:100px;">
+                    <option value="GAUGE"   {% if data.nodata.dstype == 'GAUGE'   %}selected{% endif %}>GAUGE</option>
+                    <option value="DEVICE"  {% if data.nodata.dstype == 'DEVICE'  %}selected{% endif %}>DEVICE</option>
+                    <option value="COUNTER" {% if data.nodata.dstype == 'COUNTER' %}selected{% endif %}>COUNTER</option>
+                </select>
+            </div> 
+            <div class="form-inline mt10" role="form">
+                <span class="f1">step</span> 
+                <input type="text" placeholder="60" value="{{ data.nodata.step }}" class="form-control" id="step" style="width: 100px;">            
+            </div>
+
+            <div class="form-inline mt10" role="form">
+                <span class="f1">mock</span> 
+                <input type="text" placeholder="-1" value="{{ data.nodata.mock}}" class="form-control" id="mock" style="width: 100px;">
+            </div>
+        </div>
+    </div>    
+
+    <div class="panel panel-default" {% if g.cluster|length == 1 and 'all' in g.cluster %}style="display: none;"{% endif %}>
+        <div class="panel-heading">select cluster</div>
+        <div class="panel-body">
+            <div class="form-inline mt10" role="form">
+                <span class="f1">cluster</span> 
+                <select class="form-control" id="cluster" style="width:100px;" autocomplete="off">
+                    <option value="all" {% if data.nodata.cluster == 'all' %}selected="selected"{% endif %}>all</option>
+                    {% for c in g.cluster if c!= 'all' %}
+                        <option value="{{ c }}" {% if data.nodata.cluster == c  %}selected="selected"{% endif %}>{{ c }}</option>
+                    {% endfor %}
+                </select>            
+            </div>
+        </div>
+    </div>
+
+    <div class="mb20">
+        <button class="btn btn-default" onclick="update_nodata();">Submit</button>
+        <a href="{{ url_for('nodatas_get') }}" style="text-decoration: none;">
+            <button class="btn btn-default">
+                <span class="glyphicon glyphicon-arrow-left"></span>
+                <span>Back</span>
+            </button>
+        </a>
+    </div>
+
+{% endblock %}

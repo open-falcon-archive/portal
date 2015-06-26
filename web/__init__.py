@@ -52,6 +52,13 @@ def before_request():
         session['user_name'] = username
         g.user_name = session['user_name']
 
+    # add CLUSTER config to flask.g
+    if 'CLUSTER' in app.config:
+        g.cluster = app.config['CLUSTER']
+        if 'all' not in g.cluster:
+            g.cluster.append('all')
+    else:
+        g.cluster = ['all']
 
 def redirect_to_sso():
     sig = uic.gen_sig()
@@ -60,4 +67,4 @@ def redirect_to_sso():
     return resp
 
 
-from web.controller import home, group, plugin, host, expression, api, template, strategy
+from web.controller import home, group, plugin, host, expression, nodata, api, template, strategy

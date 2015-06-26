@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="form-inline" role="form">
+        <div class="form-group">
+            <input type="text" value="{{ data.query }}" class="form-control" id="query"
+                   placeholder="search..." onkeydown="if(event.keyCode==13)query_nodata()">
+        </div>
+        <button type="button" onclick="query_nodata();" class="btn btn-default">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+        <input type="checkbox" name="mine" id="mine" {% if data.mine == '1' %}checked="checked"{% endif %}>
+        <span>mine</span>
+
+        <div class="pull-right">
+            <a href="{{ url_for('nodata_add_get') }}" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+
+    </div>
+    <div>
+        {% for v in data.vs%}
+            {% if v.cluster in g.cluster %}
+                <hr/>
+                <div class="">{{ v.endpoint }}/{{ v.metric }}/{{ v.tags }};&nbsptype={{ v.dstype }},step={{ v.step }}</div>
+                <div class="mt10 gray">
+                    <span class="gray">mock: {{ v.mock }}</span> 
+                    {% if v.writable(g.user_name) %}
+                        <div class="pull-right">
+                            <a href="{{ url_for('nodata_add_get', id=v.id) }}" class="btn btn-default"
+                               style="text-decoration: none;">
+                                <span class="glyphicon glyphicon-edit orange"></span>
+                            </a>
+                            <button onclick="delete_nodata('{{ v.id }}');" class="btn btn-default">
+                                <span class="glyphicon glyphicon-trash orange"></span>
+                            </button>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="mt10 gray">
+                    <p>{% if not (g.cluster|length == 1 and 'all' in g.cluster) %}cluster: {{ v.cluster }},{% endif %}creator: {{ v.creator }}, t_modify: {{ v.t_modify }}</p>
+                </div>
+            {% endif %}
+        {% else %}
+            <hr/>
+            no records
+        {% endfor %}
+    </div>
+
+    {% import "blocks.html" as blocks %}
+    {{ blocks.pager('/nodatas?q='+data.query+'&mine='+data.mine, data.total, data.limit, data.page) }}
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    <script>
+        $(function () {
+            $("#mine").click(query_nodata);
+        });
+    </script>
+{% endblock %}
