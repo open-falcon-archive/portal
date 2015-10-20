@@ -55,6 +55,12 @@ class Host(Bean):
         return ret
 
     @classmethod
+    def create(cls, hostname):
+        if cls.exists('hostname=%s', [hostname]):
+            return
+        cls.insert({'hostname': hostname})
+
+    @classmethod
     def add(cls, host_id, hostname):
         if cls.exists('id=%s', [host_id]):
             return
