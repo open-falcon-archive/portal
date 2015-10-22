@@ -63,7 +63,7 @@
                         <span class="glyphicon glyphicon-question-sign" style="float:right;"></span>
                     </a>
                     <select class="form-control" id="obj_type" style="vertical-align:top" onchange="on_endpoint_changed()">
-                        <option value="group" {% if data.nodata.obj_type == 'group' %}selected{% endif %}>tag串</option>
+                        <option value="group" {% if data.nodata.obj_type == 'group' %}selected{% endif %}>机器分组</option>
                         <option value="host"  {% if data.nodata.obj_type == 'host'  %}selected{% endif %}>机器名</option>
                         <option value="other" {% if data.nodata.obj_type == 'other' %}selected{% endif %}>其他</option>
                     </select>
@@ -115,7 +115,7 @@
             </div>
         </div>    
 
-        <a class="orange" target="_blank" href="http://book.open-falcon.com">
+        <a class="orange" target="_blank" href="http://book.open-falcon.com/zh/usage/nodata.html">
             <span class="glyphicon glyphicon-question-sign"></span>
             Nodata监控用户手册
         </a>
