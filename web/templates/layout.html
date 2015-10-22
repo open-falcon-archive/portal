@@ -44,6 +44,7 @@
                 <li role="presentation" class="{% if not g.menu %}active{% endif %}"><a href="/">HostGroups</a></li>
                 <li role="presentation" class="{% if g.menu == 'templates' %}active{% endif %}"><a href="{{ url_for('templates_get') }}">Templates</a></li>
                 <li role="presentation" class="{% if g.menu == 'expressions' %}active{% endif %}"><a href="{{ url_for('expressions_get') }}">Expressions</a></li>
+                <li role="presentation" class="{% if g.menu == 'nodatas' %}active{% endif %}"><a href="{{ url_for('nodatas_get') }}">Nodatas</a></li>
             </ul>
         </div>
 
