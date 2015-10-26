@@ -46,7 +46,8 @@ def before_request():
     if not username:
         return redirect_to_sso()
 
-    g.user_name = username
+    session['user_name'] = username
+    g.user_name = session['user_name']
 
 
 def redirect_to_sso():
