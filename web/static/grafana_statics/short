@@ -1,0 +1,185 @@
+body {
+    font-weight: 300;
+    background: #eaeaea;
+}
+body {
+    margin: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555;
+    background-color: #eaeaea;
+}
+::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+}
+.navbar-inner {
+    border-width: 0;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.sidemenu-item-text {
+    width: 110px;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.sidemenu-item img {
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    box-shadow: 0 0 14px 2px rgba(255,255,255,.05);
+}
+img {
+    max-width: 100%;
+    width: auto\9;
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+    border-top-color: initial;
+    border-top-style: initial;
+    border-top-width: 0px;
+    border-right-color: initial;
+    border-right-style: initial;
+    border-right-width: 0px;
+    border-bottom-color: initial;
+    border-bottom-style: initial;
+    border-bottom-width: 0px;
+    border-left-color: initial;
+    border-left-style: initial;
+    border-left-width: 0px;
+    -ms-interpolation-mode: bicubic;
+}
+
+.sidemenu-wrapper {
+    position: absolute;
+    display: none;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+    background: #eaeaea;
+    min-height: 100%;
+    z-index: 101;
+}
+body.ng-scope.sidemenu-open {
+    border-width: 0 0 1px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+}
+
+.navbar-inner {
+    border-width: 0;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+}
+Pseudo ::-webkit-scrollbar element
+::-webkit-scrollbar {
+    width: 8px;
+    hei
+.main-view-container {
+    padding: 72px 20px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+Pseudo ::-webkit-scrollbar element
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+.panel-container {
+    background-color: #fff;
+    position: relative;
+    border: solid 1px #ddd;
+    border-top-color: rgb(221, 221, 221);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: rgb(221, 221, 221);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: rgb(221, 221, 221);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: rgb(221, 221, 221);
+    border-left-style: solid;
+    border-left-width: 1px;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+Pseudo ::-webkit-scrollbar element
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+img {
+    max-width: 100%;
+    width: auto\9;
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+    border-top-color: initial;
+    border-top-style: initial;
+    border-top-width: 0px;
+    border-right-color: initial;
+    border-right-style: initial;
+    border-right-width: 0px;
+    border-bottom-color: initial;
+    border-bottom-style: initial;
+    border-bottom-width: 0px;
+    border-left-color: initial;
+    border-left-style: initial;
+    border-left-width: 0px;
+    -ms-interpolation-mode: bicubic;
+}
+img {
+    border: 0;
+    border-top-color: initial;
+    border-top-style: initial;
+    border-top-width: 0px;
+    border-right-color: initial;
+    border-right-style: initial;
+    border-right-width: 0px;
+    border-bottom-color: initial;
+    border-bottom-style: initial;
+    border-bottom-width: 0px;
+    border-left-color: initial;
+    border-left-style: initial;
+    border-left-width: 0px;
+    -ms-interpolation-mode: bicubic;
+}
+.sidemenu-wrapper {
+    position: absolute;
+    display: none;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+    background: #eaeaea;
+    min-height: 100%;
+    z-index: 101;
+}
+body.ng-scope.sidemenu-open {
+    border-width: 0 0 1px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+}
+.sidemenu-open .sidemenu-wrapper {
+    display: block;
+}
