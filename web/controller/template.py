@@ -8,6 +8,7 @@ from web.model.action import Action
 from web.model.grp_tpl import GrpTpl
 from web.model.host_group import HostGroup
 from frame.config import UIC_ADDRESS
+from frame import config
 
 
 @app.route('/templates')
@@ -31,7 +32,8 @@ def templates_get():
             'page': page,
             'mine': mine,
             'uic_address': UIC_ADDRESS['external'],
-        }
+        },
+        config=config
     )
 
 
@@ -62,7 +64,8 @@ def template_update_get(tpl_id):
     t.parent = Template.get(t.parent_id)
     ss = Strategy.select_vs(where='tpl_id = %s', params=[tpl_id], order='metric')
     t.action = Action.get(t.action_id)
-    return render_template('template/update.html', data={'tpl': t, 'ss': ss, 'uic': UIC_ADDRESS['external']})
+    return render_template('template/update.html', 
+            data={'tpl': t, 'ss': ss, 'uic': UIC_ADDRESS['external']}, config=config)
 
 
 @app.route('/template/binds/<tpl_id>')
@@ -74,11 +77,14 @@ def template_binds_get(tpl_id):
         return jsonify(msg='no such template')
 
     groups = GrpTpl.grp_list(tpl_id)
-    return render_template('template/groups.html', data={
-        "gs": groups,
-        "tpl": t,
-        "uic_address": UIC_ADDRESS['external'],
-    })
+    return render_template(
+            'template/groups.html', 
+            data={
+                "gs": groups,
+                "tpl": t,
+                "uic_address": UIC_ADDRESS['external'],
+            }, 
+            config=config)
 
 
 @app.route('/template/unbind/group')
@@ -142,7 +148,8 @@ def template_view_get(tpl_id):
     t.parent = Template.get(t.parent_id)
     ss = Strategy.select_vs(where='tpl_id = %s', params=[tpl_id], order='metric')
     t.action = Action.get(t.action_id)
-    return render_template('template/view.html', data={'tpl': t, 'ss': ss, 'uic_address': UIC_ADDRESS['external']})
+    return render_template('template/view.html', 
+            data={'tpl': t, 'ss': ss, 'uic_address': UIC_ADDRESS['external']}, config=config)
 
 
 @app.route('/template/fork/<tpl_id>')
@@ -162,7 +169,7 @@ def template_fork_get(tpl_id):
 def template_help_get():
     g.menu = 'templates'
     contact = app.config['CONTACT']
-    return render_template('template/help.html', contact=contact)
+    return render_template('template/help.html', contact=contact, config=config)
 
 
 @app.route('/template/delete/<tpl_id>')

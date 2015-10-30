@@ -5,6 +5,7 @@ from flask import jsonify, render_template, request, g
 from web.model.host_group import HostGroup
 from web.model.plugin_dir import PluginDir
 from frame.config import UIC_ADDRESS
+from frame import config
 
 
 @app.route('/group/<group_id>/plugins')
@@ -16,7 +17,8 @@ def plugin_list_get(group_id):
         return jsonify(msg='no such group %s' % group_id)
 
     plugins = PluginDir.select_vs(where='grp_id = %s', params=[group_id])
-    return render_template('plugin/list.html', group=group, plugins=plugins, uic_address=UIC_ADDRESS['external'])
+    return render_template('plugin/list.html', group=group, plugins=plugins, 
+                           uic_address=UIC_ADDRESS['external'], config=config)
 
 
 @app.route('/plugin/bind', methods=['POST'])
