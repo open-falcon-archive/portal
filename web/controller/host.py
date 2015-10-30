@@ -7,6 +7,7 @@ from web.model.group_host import GroupHost
 from web.model.grp_tpl import GrpTpl
 from web.model.host import Host
 from web.model.template import Template
+from frame import config
 
 
 @app.route('/group/<group_id>/hosts.txt')
@@ -48,7 +49,8 @@ def group_hosts_list(group_id):
             'page': page,
             'maintaining': maintaining,
             'group': group,
-        }
+        },
+        config=config
     )
 
 
@@ -89,7 +91,7 @@ def host_add_get():
     if not group:
         return jsonify(msg='no such group')
 
-    return render_template('host/add.html', group=group)
+    return render_template('host/add.html', group=group, config=config)
 
 
 @app.route('/host/add', methods=['POST'])
@@ -138,7 +140,7 @@ def host_groups_get(host_id):
 
     group_ids = GroupHost.group_ids(h.id)
     groups = [HostGroup.read('id = %s', [group_id]) for group_id in group_ids]
-    return render_template('host/groups.html', groups=groups, host=h)
+    return render_template('host/groups.html', groups=groups, host=h, config=config)
 
 
 @app.route('/host/<host_id>/templates')
@@ -154,7 +156,7 @@ def host_templates_get(host_id):
     templates = GrpTpl.tpl_set(group_ids)
     for v in templates:
         v.parent = Template.get(v.parent_id)
-    return render_template('host/templates.html', **locals())
+    return render_template('host/templates.html', config=config, **locals())
 
 
 @app.route('/host/unbind')

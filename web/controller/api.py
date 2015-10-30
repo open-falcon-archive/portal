@@ -7,6 +7,7 @@ from frame.store import db
 from web.model.template import Template
 from web.model.action import Action
 from frame import utils
+from frame import config
 
 
 @app.route('/api/version')
@@ -73,4 +74,4 @@ def api_pings_get():
 
 @app.route('/api/debug')
 def api_debug():
-    return render_template('debug/index.html')
+    return render_template('debug/index.html', config=config)
