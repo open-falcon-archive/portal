@@ -21,7 +21,10 @@ class GroupHost(Bean):
     def bind(cls, group_id, hostname):
         h = Host.read('hostname = %s', [hostname])
         if not h:
-            return 'no such host'
+            Host.create(hostname)
+            h = Host.read('hostname = %s', [hostname])
+            if not h:
+                return 'host auto add failed'
 
         if cls.exists('grp_id = %s and host_id = %s', [group_id, h.id]):
             return 'already existent'
