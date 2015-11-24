@@ -71,7 +71,7 @@ class Nodata(Bean):
             'step' : step,
             'mock': mock,
             'creator': login_user,
-            't_create': time.strftime('%Y-%m-%d %H:%M:%S')
+            't_create': time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
         })
 
         if nodata_id:
