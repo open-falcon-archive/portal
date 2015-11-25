@@ -3,7 +3,7 @@ __author__ = 'Ulric Qin'
 from .bean import Bean
 from frame.config import MAINTAINERS
 from frame.api import uic
-import time
+import datetime
 
 
 class Nodata(Bean):
@@ -71,7 +71,7 @@ class Nodata(Bean):
             'step' : step,
             'mock': mock,
             'creator': login_user,
-            't_create': int(time.time())
+            't_create': datetime.datetime.now()
         })
 
         if nodata_id:
