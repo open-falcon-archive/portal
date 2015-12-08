@@ -121,7 +121,7 @@ function query_host() {
     var query = $.trim($("#query").val());
     var limit = $("#limit").val();
     var maintaining = document.getElementById('maintaining').checked ? 1 : 0;
-    window.location.href = '/group/' + group_id + '/hosts?q=' + query + '&maintaining=' + maintaining + '&limit=' + limit + '&xbox='+xbox;
+    window.location.href = '/group/' + group_id + '/hosts?q=' + query + '&maintaining=' + maintaining + '&limit=' + limit + '&xbox=' + xbox;
 }
 
 function select_all() {
@@ -582,5 +582,46 @@ function node_bind_tpl() {
         handle_quietly(json, function () {
             location.reload();
         });
+    });
+}
+
+function create_cluster_monitor_metric(grp_id) {
+    $.post('/group/' + grp_id + '/cluster/creator', {
+        'numerator': $("#numerator").val(),
+        'denominator': $("#denominator").val(),
+        'endpoint': $("#endpoint").val(),
+        'metric': $("#metric").val(),
+        'tags': $("#tags").val(),
+        'step': $("#step").val()
+    }, function (json) {
+        handle_quietly(json, function () {
+            location.href = "/group/" + grp_id + "/cluster";
+        });
+    })
+}
+
+function update_cluster_monitor_metric(cluster_id, grp_id) {
+    $.post('/cluster/edit/' + cluster_id, {
+        'numerator': $("#numerator").val(),
+        'denominator': $("#denominator").val(),
+        'endpoint': $("#endpoint").val(),
+        'metric': $("#metric").val(),
+        'tags': $("#tags").val(),
+        'step': $("#step").val(),
+        'grp_id': grp_id
+    }, function (json) {
+        handle_quietly(json);
+    });
+}
+
+function delete_cluster_monitor_item(cluster_id) {
+    my_confirm('确定要删除？？？', ['确定', '取消'], function () {
+        $.post('/cluster/delete/' + cluster_id, {}, function (json) {
+            handle_quietly(json, function () {
+                location.reload();
+            })
+        });
+    }, function () {
+        return false;
     });
 }

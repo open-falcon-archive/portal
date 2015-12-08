@@ -80,10 +80,13 @@ def api_debug():
 
 @app.route('/api/group/<grp_name>/hosts.json')
 def api_group_hosts_json(grp_name):
-    group = HostGroup.read(where='grp_name = %s', params=[grp_name])
+    group = HostGroup.read(where='id = %s', params=[grp_name])
     if not group:
-        return jsonify(msg='no such group %s' % grp_name)
+        group = HostGroup.read(where='grp_name = %s', params=[grp_name])
+        if not group:
+            return jsonify(msg='no such group %s' % grp_name)
 
     vs, _ = Host.query(1, 10000000, '', '0', group.id)
     names = [v.hostname for v in vs]
     return jsonify(msg='', data=names)
+
