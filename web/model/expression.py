@@ -172,3 +172,16 @@ class Expression(Bean):
             return False
 
         return uic.email_in_groups(login_user, a.uic)
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "expression": self.expression                        
+            "func": self.func,
+            "op": self.op,
+            "right_value": self.right_value,
+            "max_step": self.max_step,
+            "priority": self.priority,
+            "note": self.note,
+            "action_id": self.action_id
+        }
