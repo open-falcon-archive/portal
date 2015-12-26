@@ -176,7 +176,7 @@ class Expression(Bean):
     def to_json(self):
         return {
             "id": self.id,
-            "expression": self.expression                        
+            "expression": self.expression,                       
             "func": self.func,
             "op": self.op,
             "right_value": self.right_value,
