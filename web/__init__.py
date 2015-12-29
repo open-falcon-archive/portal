@@ -56,4 +56,4 @@ def redirect_to_sso():
     return resp
 
 
-from web.controller import home, group, plugin, host, expression, api, template, strategy, nodata
+from web.controller import home, group, plugin, host, expression, api, template, strategy, nodata, cluster

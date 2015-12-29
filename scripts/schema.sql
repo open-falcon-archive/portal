@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS falcon_portal;
 CREATE DATABASE falcon_portal;
 USE falcon_portal;
 SET NAMES 'utf8';
@@ -16,7 +17,7 @@ CREATE TABLE host
   plugin_version VARCHAR(128) NOT NULL DEFAULT '',
   maintain_begin INT UNSIGNED NOT NULL DEFAULT 0,
   maintain_end   INT UNSIGNED NOT NULL DEFAULT 0,
-  update_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  update_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   UNIQUE KEY idx_host_hostname (hostname)
 )
@@ -163,3 +164,51 @@ CREATE TABLE `action` (
   DEFAULT CHARSET =utf8
   COLLATE =utf8_unicode_ci;
 
+DROP TABLE IF EXISTS cluster;
+CREATE TABLE cluster
+(
+  id          INT UNSIGNED   NOT NULL AUTO_INCREMENT,
+  grp_id      INT            NOT NULL,
+  numerator   VARCHAR(10240) NOT NULL,
+  denominator VARCHAR(10240) NOT NULL,
+  endpoint    VARCHAR(255)   NOT NULL,
+  metric      VARCHAR(255)   NOT NULL,
+  tags        VARCHAR(255)   NOT NULL,
+  ds_type     VARCHAR(255)   NOT NULL,
+  step        INT            NOT NULL,
+  last_update TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  creator     VARCHAR(255)   NOT NULL,
+  PRIMARY KEY (id)
+)
+  ENGINE =InnoDB
+  DEFAULT CHARSET =latin1;
+
+
+/**
+ * nodata mock config
+ */
+DROP TABLE IF EXISTS `mockcfg`;
+CREATE TABLE `mockcfg` (
+  `id`       BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name`     VARCHAR(255)        NOT NULL DEFAULT ''
+  COMMENT 'name of mockcfg, used for uuid',
+  `obj`      VARCHAR(10240)      NOT NULL DEFAULT ''
+  COMMENT 'desc of object',
+  `obj_type` VARCHAR(255)        NOT NULL DEFAULT ''
+  COMMENT 'type of object, host or group or other',
+  `metric`   VARCHAR(128)        NOT NULL DEFAULT '',
+  `tags`     VARCHAR(1024)       NOT NULL DEFAULT '',
+  `dstype`   VARCHAR(32)         NOT NULL DEFAULT 'GAUGE',
+  `step`     INT(11) UNSIGNED    NOT NULL DEFAULT 60,
+  `mock`     DOUBLE              NOT NULL DEFAULT 0
+  COMMENT 'mocked value when nodata occurs',
+  `creator`  VARCHAR(64)         NOT NULL DEFAULT '',
+  `t_create` DATETIME            NOT NULL
+  COMMENT 'create time',
+  `t_modify` TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'last modify time',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_name` (`name`)
+)
+  ENGINE =InnoDB
+  DEFAULT CHARSET =utf8
+  COLLATE =utf8_unicode_ci;

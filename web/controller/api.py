@@ -8,6 +8,8 @@ from web.model.template import Template
 from web.model.action import Action
 from web.model.host_group import HostGroup
 from web.model.host import Host
+from web.model.expression import Expression
+from web.model.strategy import Strategy
 from frame import utils
 from frame import config
 
@@ -58,6 +60,24 @@ def api_action_get(action_id):
     return jsonify(msg='', data=a.to_json())
 
 
+@app.route("/api/expression/<exp_id>")
+def api_expression_get(exp_id):
+    exp_id = int(exp_id)
+    expression = Expression.get(exp_id)
+    if not expression:
+        return jsonify(msg="no such expression")
+    return jsonify(msg='', data=expression.to_json())
+
+
+@app.route("/api/strategy/<s_id>")
+def api_strategy_get(s_id):
+    s_id = int(s_id)
+    s = Strategy.get(s_id)
+    if not s:
+        return jsonify(msg="no such strategy")
+    return jsonify(msg='', data=s.to_json())
+    
+
 @app.route('/api/metric/query')
 def api_metric_query():
     q = request.args.get('query', '').strip()
@@ -81,9 +101,11 @@ def api_debug():
 
 @app.route('/api/group/<grp_name>/hosts.json')
 def api_group_hosts_json(grp_name):
-    group = HostGroup.read(where='grp_name = %s', params=[grp_name])
+    group = HostGroup.read(where='id = %s', params=[grp_name])
     if not group:
-        return jsonify(msg='no such group %s' % grp_name)
+        group = HostGroup.read(where='grp_name = %s', params=[grp_name])
+        if not group:
+            return jsonify(msg='no such group %s' % grp_name)
 
     vs, _ = Host.query(1, 10000000, '', '0', group.id)
     names = [v.hostname for v in vs]
