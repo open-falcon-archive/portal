@@ -25,7 +25,7 @@ def username_from_sso(sig=''):
 
 
 def login_url(sig='', callback=''):
-    return '%s/auth/login?sig=%s&callback=%s' % (UIC_ADDRESS['external'], sig, callback)
+    return UIC_ADDRESS['login']
 
 
 def query_group(query='', limit=10):
