@@ -41,18 +41,13 @@ def before_request():
     sig = request.cookies.get('sig')
     if not sig:
         return redirect_to_sso()
-
-    username = uic.username_from_sso(sig)
-    if not username:
-        return redirect_to_sso()
-
-    g.user_name = username
+    elif 'user_name' not in g:
+        username = uic.username_from_sso(sig)
+        g.user_name = username
 
 
 def redirect_to_sso():
-    sig = uic.gen_sig()
-    resp = make_response(redirect(uic.login_url(sig, urllib.quote(request.url))))
-    resp.set_cookie('sig', sig)
+    resp = make_response(redirect(uic.login_url()))
     return resp
 
 
