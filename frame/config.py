@@ -19,6 +19,7 @@ PERMANENT_SESSION_LIFETIME = 3600 * 24 * 30
 UIC_ADDRESS = {
     'internal': 'http://127.0.0.1:1234',
     'external': 'http://127.0.0.1:1234',
+    'login': 'http://127.0.0.1:1234/auth/login?callback=http://127.0.0.1:5050/',
 }
 
 UIC_TOKEN = ''
