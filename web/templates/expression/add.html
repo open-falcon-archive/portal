@@ -8,11 +8,11 @@
     <input type="hidden" id="expression_id" value="{{ data.expression.id }}">
 
     <div class="panel panel-default">
-        <div class="panel-heading">{% if data.expression.id %}modify{% else %}add{% endif %} expression</div>
+        <div class="panel-heading">{% if data.expression.id %}{{ _('modify') }}{% else %}{{ _('add') }}{% endif %} {{ _('expression') }}</div>
         <div class="panel-body">
 
             <textarea class="form-control" rows="2" id="expression"
-                      placeholder="e.g. each(metric=qps srv=falcon)">{{ data.expression.expression }}</textarea>
+                      placeholder="{{ _('e.g.') }} each(metric=qps srv=falcon)">{{ data.expression.expression }}</textarea>
 
             <div class="form-inline mt10" role="form">
                 <div class="form-group">
@@ -86,10 +86,10 @@
     </div>
 
     <div class="mb20">
-        <button class="btn btn-default" onclick="update_expression();">Submit</button>
+        <button class="btn btn-default" onclick="update_expression();">{{ _('Submit') }}</button>
         <button class="btn btn-default" onclick="history.go(-1);">
             <span class="glyphicon glyphicon-arrow-left"></span>
-            <span>Back</span>
+            <span>{{ _('Back') }}</span>
         </button>
     </div>
 

@@ -3,20 +3,18 @@
 
     <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading" style="padding-left: 8px;">plugins</div>
+        <div class="panel-heading" style="padding-left: 8px;">{{ _('plugins') }}</div>
         <div class="panel-body" style="padding-left: 8px;">
-            <span class="green">{{ group.grp_name }}</span>
-            binding
-            <span class="glyphicon glyphicon-pushpin"></span>
+            {{ _('current hostgroup:') }}<span class="green">{{ group.grp_name }}</span>
         </div>
 
         <!-- Table -->
         <table class="table table-hover table-bordered table-striped" style="margin-bottom: 0px; margin-top: 0px;">
             <thead>
             <tr>
-                <th>plugin dir</th>
-                <th>creator</th>
-                <th>operation</th>
+                <th>{{ _('plugin dir') }}</th>
+                <th>{{ _('creator') }}</th>
+                <th>{{ _('operation') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -38,7 +36,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="3">no records</td>
+                    <td colspan="3">{{ _('no records') }}</td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -47,15 +45,15 @@
     </div>
 
     <div class="form-inline mb20" role="form">
-        <input type="text" placeholder="e.g. sys/ntp" class="form-control" id="plugin_dir"
+        <input type="text" placeholder="{{ _('e.g.') }} sys/ntp" class="form-control" id="plugin_dir"
                onkeydown="if(event.keyCode==13)bind_plugin('{{ group.id }}')">
         <button type="button" onclick="bind_plugin('{{ group.id }}');" class="btn btn-default">
             <span class="glyphicon glyphicon-plus"></span>
-            Bind
+            {{ _('Bind') }}
         </button>
         <button type="button" onclick="history.go(-1);" class="btn btn-default">
             <span class="glyphicon glyphicon-arrow-left"></span>
-            Back
+            {{ _('Back') }}
         </button>
     </div>
 

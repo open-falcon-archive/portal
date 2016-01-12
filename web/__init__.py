@@ -5,10 +5,20 @@ import logging
 import datetime
 import urllib
 from flask import Flask, request, g, session, make_response, redirect
+from flask.ext.babel import Babel
 from frame.api import uic
 
 app = Flask(__name__)
 app.config.from_object("frame.config")
+babel = Babel(app)
+
+@babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(app.config.get('LANGUAGES').keys())
+
+@babel.timezoneselector
+def get_timezone():
+    return app.config.get('BABEL_DEFAULT_TIMEZONE')
 
 # config log
 log_formatter = '%(asctime)s\t[%(filename)s:%(lineno)d] [%(levelname)s: %(message)s]'
@@ -37,7 +47,7 @@ def before_request():
     for ignore_pre in IGNORE_PREFIX:
         if p.startswith(ignore_pre):
             return
-
+    g.locale = get_locale()
     if 'user_name' in session and session['user_name']:
         g.user_name = session['user_name']
     else:

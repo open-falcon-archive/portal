@@ -55,6 +55,12 @@ function kill9() {
 function restart() {
     stop
     sleep 2
+    check_pid
+    running=$?
+    if [ $running -gt 0 ];then
+        kill9 $(cat $pidfile)
+        sleep 2
+    fi
     start
 }
 

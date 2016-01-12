@@ -11,6 +11,15 @@ DB_USER = "root"
 DB_PASS = ""
 DB_NAME = "falcon_portal"
 
+# -- i18n config --
+BABEL_DEFAULT_LOCALE   = 'zh_CN'
+BABEL_DEFAULT_TIMEZONE = 'Asia/Shanghai'
+# aviliable translations
+LANGUAGES	= {
+    'en':	'English',
+    'zh_CN':	'Chinese-Simplified'
+}
+
 # -- cookie config --
 SECRET_KEY = "4e.5tyg8-u9ioj"
 SESSION_COOKIE_NAME = "falcon-portal"
