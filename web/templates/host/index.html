@@ -48,9 +48,9 @@
                 <td>{{ v.maintain_begin | fmt_time }}</td>
                 <td>{{ v.maintain_end | fmt_time }}</td>
                 <td>
-                    <a href="{{ url_for('host_groups_get', host_id=v.id) }}">groups</a>
+                    <a href="{{ url_for('host_groups_get', host_id=v.id) }}">{{ _('hostgroup') }}</a>
                     <span class="cut-line">¦</span>
-                    <a href="{{ url_for('host_templates_get', host_id=v.id) }}">templates</a>
+                    <a href="{{ url_for('host_templates_get', host_id=v.id) }}">{{ _('templates') }}</a>
                 </td>
             </tr>
         {% else %}

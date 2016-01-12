@@ -11,6 +11,8 @@ falcon portal
     # use douban pypi
     $ ./env/bin/pip install -r pip_requirements.txt -i http://pypi.douban.com/simple
 
+    # compile translation cache
+    $ ./env/bin/python scripts/tr_compile.py
 
 ## Init database and config
 
