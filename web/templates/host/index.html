@@ -8,14 +8,14 @@
     <div class="form-inline" role="form">
         <div class="form-group">
             <input type="text" value="{{ data.query }}" class="form-control" id="query"
-                   placeholder="search hostname" onkeydown="if(event.keyCode==13)query_host()">
+                   placeholder="{{ _('search...') }}" onkeydown="if(event.keyCode==13)query_host()">
         </div>
         <button type="button" onclick="query_host();" class="btn btn-default">
             <span class="glyphicon glyphicon-search"></span>
         </button>
         <input type="checkbox" name="maintaining" id="maintaining"
                {% if data.maintaining == '1' %}checked="checked"{% endif %}>
-        <span>maintaining</span>
+        <span>{{ _('maintaining') }}</span>
 
         <div class="pull-right">
             <span class="green">
@@ -25,7 +25,7 @@
             <a {% if g.xbox %}target="_blank"{% endif %} href="{{ url_for('host_add_get', group_id = data.group.id) }}"
                class="btn btn-default" style="margin-left: 10px;">
                 <span class="glyphicon glyphicon-plus"></span>
-                Add Host
+                {{ _('Add Host') }}
             </a>
         </div>
     </div>
@@ -34,10 +34,10 @@
         <thead>
         <tr>
             <th><input type="checkbox" onclick="select_all();" id="chk"/></th>
-            <th>hostname</th>
-            <th>maintain begin</th>
-            <th>maintain end</th>
-            <th>relation</th>
+            <th>{{ _('hostname') }}</th>
+            <th>{{ _('maintain begin') }}</th>
+            <th>{{ _('maintain end') }}</th>
+            <th>{{ _('relation') }}</th>
         </tr>
         </thead>
         <tbody id="hosts">
@@ -55,7 +55,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records</td>
+                <td colspan="5">{{ _('no records') }}</td>
             </tr>
         {% endfor %}
         <tr>
@@ -67,20 +67,20 @@
             <td colspan="4">
                 <div class="form-inline" role="form">
                     <div class='input-group date'>
-                        <input type='text' class="form-control" size="16" placeholder="begin" id='begin'/>
+                        <input type='text' class="form-control" size="16" placeholder="{{ _('begin') }}" id='begin'/>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
                     </div>
                     <div class='input-group date'>
-                        <input type='text' class="form-control" size="16" placeholder="end" id='end'/>
+                        <input type='text' class="form-control" size="16" placeholder="{{ _('end') }}" id='end'/>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
                     </div>
                     <div class='input-group'>
-                        <button class="btn btn-default" onclick="maintain()">Maintain</button>
+                        <button class="btn btn-default" onclick="maintain()">{{ _('Maintain') }}</button>
                     </div>
                     <div class='input-group'>
-                        <button class="btn btn-default" onclick="no_maintain()">Unset</button>
+                        <button class="btn btn-default" onclick="no_maintain()">{{ _('Unset') }}</button>
                     </div>
                 </div>
             </td>
@@ -95,7 +95,7 @@
         {{ blocks.pager('/group/'+data.group.id.__str__()+'/hosts?q='+data.query+'&maintaining='+data.maintaining+'&xbox='+g.xbox, data.total, data.limit, data.page) }}
     </div>
     <div class="pull-left" style="margin-left: 10px; margin-top: 20px;">
-        <div class="pull-left" style="line-height: 30px;">total: {{ data.total }}, page size:</div>
+        <div class="pull-left" style="line-height: 30px;">{{ _('total') }}: {{ data.total }}, {{ _('page size') }}:</div>
         <select style="width: 80px;" onchange="query_host();" id="limit" class="form-control pull-left">
             <option {% if data.limit == 10 %}selected{% endif %}>10</option>
             <option {% if data.limit == 50 %}selected{% endif %}>50</option>

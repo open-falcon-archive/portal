@@ -41,15 +41,15 @@
 
         <div class="pull-left" style="margin-left: 20px; margin-top: 10px;">
             <ul class="nav nav-pills" role="tablist">
-                <li role="presentation" class="{% if not g.menu %}active{% endif %}"><a href="/">HostGroups</a></li>
-                <li role="presentation" class="{% if g.menu == 'templates' %}active{% endif %}"><a href="{{ url_for('templates_get') }}">Templates</a></li>
-                <li role="presentation" class="{% if g.menu == 'expressions' %}active{% endif %}"><a href="{{ url_for('expressions_get') }}">Expressions</a></li>
-                <li role="presentation" class="{% if g.menu == 'nodatas' %}active{% endif %}"><a href="{{ url_for('nodatas_get') }}">Nodatas</a></li>
+                <li role="presentation" class="{% if not g.menu %}active{% endif %}"><a href="/">{{ _('HostGroups') }}</a></li>
+                <li role="presentation" class="{% if g.menu == 'templates' %}active{% endif %}"><a href="{{ url_for('templates_get') }}">{{ _('Templates') }}</a></li>
+                <li role="presentation" class="{% if g.menu == 'expressions' %}active{% endif %}"><a href="{{ url_for('expressions_get') }}">{{ _('Expressions') }}</a></li>
+                <li role="presentation" class="{% if g.menu == 'nodatas' %}active{% endif %}"><a href="{{ url_for('nodatas_get') }}">{{ _('Nodatas') }}</a></li>
             </ul>
         </div>
 
         <div class="pull-right">
-            welcome, {{ g.user_name }}
+            {{ _('welcome') }}, {{ g.user_name }}
         </div>
         <div style="clear: both;"></div>
         <hr>

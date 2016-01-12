@@ -7,20 +7,18 @@
 
     <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading" style="padding-left: 8px;">templates</div>
+        <div class="panel-heading" style="padding-left: 8px;">{{ _('related templates list') }}</div>
         <div class="panel-body" style="padding-left: 8px;">
-            <span class="green">{{ group.grp_name }}</span>
-            binding
-            <span class="glyphicon glyphicon-pushpin"></span>
+            {{ _('current hostgroup:') }}<span class="green">{{ group.grp_name }}</span>
         </div>
 
         <!-- Table -->
         <table class="table table-hover table-bordered table-striped" style="margin-bottom: 0px; margin-top: 0px;">
             <thead>
             <tr>
-                <th>template</th>
-                <th>creator</th>
-                <th>operation</th>
+                <th>{{ _('template') }}</th>
+                <th>{{ _('creator') }}</th>
+                <th>{{ _('operation') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -42,7 +40,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="3">no records</td>
+                    <td colspan="3">{{ _('no records') }}</td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -52,16 +50,16 @@
 
     <div class="form-inline mb20" role="form">
         <div class="form-group">
-            <input type="text" style="width: 400px;" placeholder="input template name" class="form-control" id="tpl_id">
+            <input type="text" style="width: 400px;" placeholder="{{ _('input template name') }}" class="form-control" id="tpl_id">
         </div>
         <div class="form-group">
             <button type="button" onclick="bind_template('{{ group.id }}');" class="btn btn-default">
                 <span class="glyphicon glyphicon-plus"></span>
-                Bind
+                {{ _('Bind') }}
             </button>
             <button type="button" onclick="history.go(-1);" class="btn btn-default">
                 <span class="glyphicon glyphicon-arrow-left"></span>
-                Back
+                {{ _('Back') }}
             </button>
         </div>
     </div>

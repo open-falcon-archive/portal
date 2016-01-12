@@ -4,16 +4,16 @@
     <div class="form-inline" role="form">
         <div class="form-group">
             <input type="text" value="{{ data.query }}" class="form-control" id="query"
-                   placeholder="search name" onkeydown="if(event.keyCode==13)query_user()">
+                   placeholder="{{ _('search...') }}" onkeydown="if(event.keyCode==13)query_user()">
         </div>
         <button type="button" onclick="query_user();" class="btn btn-default">
             <span class="glyphicon glyphicon-search"></span>
         </button>
         <input type="checkbox" name="mine" id="mine" {% if data.mine == '1' %}checked="checked"{% endif %}>
-        <span>mine</span>
+        <span>{{ _('mine') }}</span>
         {% if data.is_root or data.community %}
         <div class="pull-right">
-            <input type="text" placeholder="input name to create" class="form-control" id="grp_name" onkeydown="if(event.keyCode==13)create_group()">
+            <input type="text" placeholder="{{ _('input name to create') }}" class="form-control" id="grp_name" onkeydown="if(event.keyCode==13)create_group()">
             <button type="button" onclick="create_group();" class="btn btn-default">
                 <span class="glyphicon glyphicon-plus"></span>
             </button>
@@ -24,9 +24,9 @@
     <table class="table table-hover table-bordered table-striped" style="margin-bottom: 0px; margin-top: 10px;">
         <thead>
         <tr>
-            <th>name</th>
-            <th>creator</th>
-            <th>operation</th>
+            <th>{{ _('hostgroup') }}</th>
+            <th>{{ _('creator') }}</th>
+            <th>{{ _('operation') }}</th>
         </tr>
         </thead>
         <tbody>
@@ -35,13 +35,13 @@
                 <td>{{ v.grp_name }}</td>
                 <td>{{ v.create_user }}</td>
                 <td>
-                    <a href="{{ url_for('group_templates_get', grp_id=v.id) }}">templates</a>
+                    <a href="{{ url_for('group_templates_get', grp_id=v.id) }}">{{ _('templates') }}</a>
                     <span class="cut-line">¦</span>
-                    <a href="{{ url_for('group_hosts_list', group_id=v.id) }}">hosts</a>
+                    <a href="{{ url_for('group_hosts_list', group_id=v.id) }}">{{ _('hosts') }}</a>
                     <span class="cut-line">¦</span>
-                    <a href="{{ url_for('plugin_list_get', group_id=v.id) }}">plugins</a>
+                    <a href="{{ url_for('plugin_list_get', group_id=v.id) }}">{{ _('plugins') }}</a>
                     <span class="cut-line">¦</span>
-                    <a href="{{ url_for('cluster_list_get', group_id=v.id) }}">aggregator</a>
+                    <a href="{{ url_for('cluster_list_get', group_id=v.id) }}">{{ _('aggregator') }}</a>
                     {% if v.writable(g.user_name) %}
                         <span class="cut-line">¦</span>
                         <a href="javascript:edit_group('{{ v.id }}', '{{ v.grp_name }}');" style="text-decoration: none;">
@@ -55,7 +55,7 @@
                 </td>
             </tr>
         {% else %}
-            <tr><td colspan="3">no records</td></tr>
+            <tr><td colspan="3">{{ _('no records') }}</td></tr>
         {% endfor %}
         </tbody>
     </table>

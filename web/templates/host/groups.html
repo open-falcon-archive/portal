@@ -3,18 +3,18 @@
 
     <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading" style="padding-left: 8px;">binding groups</div>
+        <div class="panel-heading" style="padding-left: 8px;">{{ _('binding groups') }}</div>
         <div class="panel-body" style="padding-left: 8px;">
-            host: <span class="green">{{ host.hostname }}</span>
+            {{ _('current host:') }} <span class="green">{{ host.hostname }}</span>
         </div>
 
         <!-- Table -->
         <table class="table table-hover table-bordered table-striped" style="margin-bottom: 0px; margin-top: 0px;">
             <thead>
             <tr>
-                <th>group</th>
-                <th>creator</th>
-                <th>operation</th>
+                <th>{{ _('group') }}</th>
+                <th>{{ _('creator') }}</th>
+                <th>{{ _('operation') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="3">no records</td>
+                    <td colspan="3">{{ _('no records') }}</td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -42,7 +42,7 @@
 
     <button class="btn btn-default" onclick="history.go(-1);">
         <span class="glyphicon glyphicon-arrow-left"></span>
-        Back
+        {{ _('Back') }}
     </button>
 
 {% endblock %}

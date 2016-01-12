@@ -1,0 +1,307 @@
+# English translations for PROJECT.
+# Copyright (C) 2016 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-01-12 12:54+0800\n"
+"PO-Revision-Date: 2016-01-12 12:45+0800\n"
+"Last-Translator: iambocai <bob.chen.cs@gmail.com>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.2.0\n"
+
+#: web/templates/layout.html:44
+msgid "HostGroups"
+msgstr "HostGroups"
+
+#: web/templates/layout.html:45
+msgid "Templates"
+msgstr "Templates"
+
+#: web/templates/layout.html:46
+msgid "Expressions"
+msgstr "Expressions"
+
+#: web/templates/layout.html:47
+msgid "Nodatas"
+msgstr "Nodatas"
+
+#: web/templates/layout.html:52
+msgid "welcome"
+msgstr "welcome"
+
+#: web/templates/cluster/list.html:11
+msgid "Create"
+msgstr "Create"
+
+#: web/templates/cluster/list.html:16 web/templates/group/templates.html:12
+#: web/templates/plugin/list.html:8
+msgid "current hostgroup:"
+msgstr "current hostgroup:"
+
+#: web/templates/cluster/list.html:23
+msgid "endpoint"
+msgstr "endpoint"
+
+#: web/templates/cluster/list.html:24 web/templates/nodata/add.html:74
+msgid "metric"
+msgstr "metric"
+
+#: web/templates/cluster/list.html:25 web/templates/nodata/add.html:80
+msgid "tags"
+msgstr "tags"
+
+#: web/templates/cluster/list.html:26 web/templates/group/index.html:28
+#: web/templates/group/templates.html:20 web/templates/host/groups.html:16
+#: web/templates/host/templates.html:17 web/templates/plugin/list.html:16
+#: web/templates/template/list.html:29
+msgid "creator"
+msgstr "creator"
+
+#: web/templates/cluster/list.html:27 web/templates/group/index.html:29
+#: web/templates/group/templates.html:21 web/templates/host/groups.html:17
+#: web/templates/plugin/list.html:17 web/templates/template/list.html:30
+#: web/templates/template/update.html:55
+msgid "operation"
+msgstr "operation"
+
+#: web/templates/cluster/list.html:59 web/templates/expression/list.html:56
+#: web/templates/group/index.html:58 web/templates/group/templates.html:43
+#: web/templates/host/groups.html:35 web/templates/host/index.html:58
+#: web/templates/host/templates.html:37 web/templates/nodata/list.html:63
+#: web/templates/plugin/list.html:39 web/templates/template/list.html:66
+#: web/templates/template/update.html:87 web/templates/template/view.html:63
+msgid "no records"
+msgstr "no records"
+
+#: web/templates/expression/add.html:11 web/templates/nodata/add.html:49
+msgid "modify"
+msgstr "modify"
+
+#: web/templates/expression/add.html:11 web/templates/nodata/add.html:49
+msgid "add"
+msgstr "add"
+
+#: web/templates/expression/add.html:11
+msgid "expression"
+msgstr "expression"
+
+#: web/templates/expression/add.html:15 web/templates/plugin/list.html:48
+msgid "e.g."
+msgstr "e.g."
+
+#: web/templates/expression/add.html:89 web/templates/group/advanced.html:18
+#: web/templates/nodata/add.html:106
+msgid "Submit"
+msgstr "Submit"
+
+#: web/templates/expression/add.html:92 web/templates/group/templates.html:62
+#: web/templates/host/add.html:28 web/templates/host/groups.html:45
+#: web/templates/host/templates.html:47 web/templates/nodata/add.html:110
+#: web/templates/plugin/list.html:56
+msgid "Back"
+msgstr "Back"
+
+#: web/templates/expression/list.html:7 web/templates/group/index.html:7
+#: web/templates/host/index.html:11 web/templates/nodata/list.html:25
+#: web/templates/template/list.html:7
+msgid "search..."
+msgstr "search..."
+
+#: web/templates/expression/list.html:13 web/templates/group/index.html:13
+#: web/templates/nodata/list.html:31 web/templates/template/list.html:13
+msgid "mine"
+msgstr "mine"
+
+#: web/templates/expression/view.html:7
+msgid "expression detail"
+msgstr "expression detail"
+
+#: web/templates/group/advanced.html:6
+msgid "Batch rename hostgroup"
+msgstr "Batch rename hostgroup"
+
+#: web/templates/group/advanced.html:11
+msgid "old"
+msgstr "old"
+
+#: web/templates/group/advanced.html:15
+msgid "new"
+msgstr "new"
+
+#: web/templates/group/advanced.html:19
+msgid "Cancel"
+msgstr "Cancel"
+
+#: web/templates/group/index.html:16 web/templates/template/list.html:16
+msgid "input name to create"
+msgstr "input name to create"
+
+#: web/templates/group/index.html:27
+msgid "hostgroup"
+msgstr "hostgroup"
+
+#: web/templates/group/index.html:38
+msgid "templates"
+msgstr "templates"
+
+#: web/templates/group/index.html:40
+msgid "hosts"
+msgstr "hosts"
+
+#: web/templates/group/index.html:42 web/templates/plugin/list.html:6
+msgid "plugins"
+msgstr "plugins"
+
+#: web/templates/group/index.html:44
+msgid "aggregator"
+msgstr "aggregator"
+
+#: web/templates/group/templates.html:10
+msgid "related templates list"
+msgstr "related templates list"
+
+#: web/templates/group/templates.html:19
+msgid "template"
+msgstr "template"
+
+#: web/templates/group/templates.html:53
+msgid "input template name"
+msgstr "input template name"
+
+#: web/templates/group/templates.html:58 web/templates/plugin/list.html:52
+msgid "Bind"
+msgstr "Bind"
+
+#: web/templates/host/add.html:24 web/templates/host/index.html:28
+msgid "Add Host"
+msgstr "Add Host"
+
+#: web/templates/host/groups.html:6
+msgid "binding groups"
+msgstr "binding groups"
+
+#: web/templates/host/groups.html:8
+msgid "current host:"
+msgstr "current host:"
+
+#: web/templates/host/groups.html:15
+msgid "group"
+msgstr "group"
+
+#: web/templates/host/index.html:18
+msgid "maintaining"
+msgstr "maintaining"
+
+#: web/templates/host/index.html:37
+msgid "hostname"
+msgstr "hostname"
+
+#: web/templates/host/index.html:38
+msgid "maintain begin"
+msgstr "maintain begin"
+
+#: web/templates/host/index.html:39
+msgid "maintain end"
+msgstr "maintain end"
+
+#: web/templates/host/index.html:40
+msgid "relation"
+msgstr "relation"
+
+#: web/templates/host/index.html:70
+msgid "begin"
+msgstr "begin"
+
+#: web/templates/host/index.html:75
+msgid "end"
+msgstr "end"
+
+#: web/templates/host/index.html:80
+msgid "Maintain"
+msgstr "Maintain"
+
+#: web/templates/host/index.html:83
+msgid "Unset"
+msgstr "Unset"
+
+#: web/templates/host/index.html:98
+msgid "total"
+msgstr "total"
+
+#: web/templates/host/index.html:98
+msgid "page size"
+msgstr "page size"
+
+#: web/templates/host/templates.html:6
+msgid "binding templates"
+msgstr "binding templates"
+
+#: web/templates/host/templates.html:15
+msgid "name"
+msgstr "name"
+
+#: web/templates/host/templates.html:16 web/templates/template/list.html:28
+msgid "parent"
+msgstr "parent"
+
+#: web/templates/nodata/add.html:49
+msgid "nodata"
+msgstr "nodata"
+
+#: web/templates/nodata/add.html:54
+msgid "nodata name"
+msgstr "nodata name"
+
+#: web/templates/nodata/add.html:85
+msgid "type"
+msgstr "type"
+
+#: web/templates/plugin/list.html:15
+msgid "plugin dir"
+msgstr "plugin dir"
+
+#: web/templates/template/groups.html:6
+msgid "host groups"
+msgstr "host groups"
+
+#: web/templates/template/groups.html:8 web/templates/template/view.html:13
+msgid "current template:"
+msgstr "current template:"
+
+#: web/templates/template/list.html:27
+msgid "template name"
+msgstr "template name"
+
+#: web/templates/template/update.html:50 web/templates/template/view.html:40
+msgid "metric/tags [note]"
+msgstr "metric/tags [note]"
+
+#: web/templates/template/update.html:51 web/templates/template/view.html:41
+msgid "condition"
+msgstr "condition"
+
+#: web/templates/template/update.html:52 web/templates/template/view.html:42
+msgid "max"
+msgstr "max"
+
+#: web/templates/template/update.html:53 web/templates/template/view.html:43
+msgid "P"
+msgstr "P"
+
+#: web/templates/template/update.html:54 web/templates/template/view.html:44
+msgid "run_at"
+msgstr "run_at"
+
+#: web/templates/template/update.html:141
+#: web/templates/template/update.html:189
+msgid "Save"
+msgstr "Save"

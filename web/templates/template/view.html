@@ -10,7 +10,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">模板基本信息</div>
         <div class="panel-body">
-            name: {{ data.tpl.tpl_name }}
+            {{ _('current template:') }} {{ data.tpl.tpl_name }}
             {% if data.tpl.parent %}
                 <span class="cut-line">¦</span>
                 parent: <a target="_blank"
@@ -31,17 +31,17 @@
         <div class="panel-heading">该模板中的策略列表</div>
         <div class="panel-body">
             <div style="line-height: 35px;">
-                max: 最大报警次数 P：报警级别（&lt;3: 既发短信也发邮件 &gt;=3: 只发邮件） run：生效时间，不指定就是全天生效
+                max: 最大报警次数 P：报警级别（&lt;3: 既发短信也发邮件 &gt;=3: 只发邮件） run_at：生效时间段，不指定就是全天生效
             </div>
         </div>
         <table class="table table-hover table-bordered table-striped" style="margin-bottom: 0px;">
             <thead>
             <tr>
-                <th>metric/tags/note</th>
-                <th>condition</th>
-                <th>max</th>
-                <th>P</th>
-                <th>run</th>
+                <th>{{ _('metric/tags [note]') }}</th>
+                <th>{{ _('condition') }}</th>
+                <th>{{ _('max') }}</th>
+                <th>{{ _('P') }}</th>
+                <th>{{ _('run_at') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -60,7 +60,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="5">no records</td>
+                    <td colspan="5">{{ _('no records') }}</td>
                 </tr>
             {% endfor %}
             </tbody>
