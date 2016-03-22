@@ -47,7 +47,7 @@
         <table class="table table-hover table-bordered table-striped" style="margin-bottom: 0px;">
             <thead>
             <tr>
-                <th>metric/tags/note</th>
+                <th><u>metric</u>/<span class="blue">tags</span><span class="gray">[note]</span></th>
                 <th>condition</th>
                 <th>max</th>
                 <th>P</th>
@@ -59,7 +59,7 @@
             {% for s in data.ss %}
                 <tr>
                     <td>
-                        {{ s.metric }}{% if s.tags %}/{{ s.tags }}{% endif %}
+                        <u>{{ s.metric }}</u>{% if s.tags %}/<span class="blue">{{ s.tags }}</span>{% endif %}
                         <span class="gray">{% if s.note %}[{{ s.note }}]{% endif %}</span>
                     </td>
                     <td>
@@ -102,19 +102,19 @@
                     metric:
                 </div>
                 <div class="form-group">
-                    <input type="text" style="width: 300px;" class="form-control" id="metric">
+                    <input type="text" style="width: 300px;" class="form-control" id="metric" data-toggle="tooltip" data-placement="top" title="监控项名，如：df.bytes.free.percent">
                 </div>
                 <div class="form-group">
-                    tags: <input type="text" class="form-control" id="tags">
-                    Max: <input class="form-control" id="max_step" style="width: 100px;" value="3">
-                    P: <input class="form-control" id="priority" style="width: 60px;" value="0">
-                    note: <input class="form-control" id="note">
+                    tags: <input type="text" class="form-control" id="tags" data-toggle="tooltip" data-placement="top" title="维度tag，如：fstype=ext4,mount=/mnt">
+                    Max: <input class="form-control" id="max_step" style="width: 100px;" value="3" data-toggle="tooltip" data-placement="top" title="持续故障情况下，连续报警次数">
+                    P: <input class="form-control" id="priority" style="width: 60px;" value="0" data-toggle="tooltip" data-placement="top" title="故障等级，填写1~5的数字">
+                    note: <input class="form-control" id="note" data-toggle="tooltip" data-placement="top" title="报警描述，如：mnt分区block使用率超过80%">
                 </div>
             </div>
 
             <div class="form-inline mt10" role="form">
                 <div class="form-group">
-                    if <input type="text" value="all(#3)" class="form-control" id="func" style="width: 100px;">
+                    if <input type="text" value="all(#3)" class="form-control" id="func" style="width: 100px;" data-toggle="tooltip" data-placement="top" title="判断方法，如：all(#3)">
                     <select class="form-control" id="op">
                         <option value="==">==</option>
                         <option value="!=">!=</option>
@@ -123,15 +123,15 @@
                         <option value=">">&gt;</option>
                         <option value=">=">&gt;=</option>
                     </select>
-                    <input type="text" value="0" class="form-control" id="right_value" style="width: 100px;">
+                    <input type="text" value="0" class="form-control" id="right_value" style="width: 100px;"  data-toggle="tooltip" data-placement="top" title="报警阈值">
                     : alarm(); callback();
                 </div>
             </div>
 
             <div class="form-inline mt10" role="form">
                 <div class="form-group">
-                    run begin(e.g. 00:00): <input type="text" class="form-control" id="run_begin">
-                    run end(e.g. 24:00): <input type="text" class="form-control" id="run_end">
+                    run begin: <input type="text" class="form-control" id="run_begin" data-toggle="tooltip" data-placement="top" title="生效开始时间，如：07:30">
+                    run end: <input type="text" class="form-control" id="run_end" data-toggle="tooltip" data-placement="top" title="生效结束时间，如：23:30">
                     (生效时间，不指定就是全天生效)
                 </div>
             </div>

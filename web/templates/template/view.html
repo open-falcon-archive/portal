@@ -37,7 +37,7 @@
         <table class="table table-hover table-bordered table-striped" style="margin-bottom: 0px;">
             <thead>
             <tr>
-                <th>metric/tags/note</th>
+                <th><u>metric</u>/<span class="blue">tags</span><span class="gray">[note]</span></th>
                 <th>condition</th>
                 <th>max</th>
                 <th>P</th>
@@ -48,7 +48,7 @@
             {% for s in data.ss %}
                 <tr>
                     <td>
-                        {{ s.metric }}{% if s.tags %}/{{ s.tags }}{% endif %}
+                        <u>{{ s.metric }}</u>{% if s.tags %}/<span class="blue">{{ s.tags }}</span>{% endif %}
                         <span class="gray">{% if s.note %}[{{ s.note }}]{% endif %}</span>
                     </td>
                     <td>
