@@ -23,6 +23,9 @@ def strategy_update_post():
     if not metric:
         return jsonify(msg='metric is blank')
 
+    if not note:
+        return jsonify(msg='note is blank')
+
     if metric == 'net.port.listen' and '=' not in tags:
         return jsonify(msg='if metric is net.port.listen, tags should like port=22')
 
