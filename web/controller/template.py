@@ -9,7 +9,9 @@ from web.model.grp_tpl import GrpTpl
 from web.model.host_group import HostGroup
 from frame.config import UIC_ADDRESS
 from frame import config
-
+from fe_api import post2FeUpdateEventCase
+import logging
+log = logging.getLogger(__name__)
 
 @app.route('/templates')
 def templates_get():
@@ -91,6 +93,8 @@ def template_binds_get(tpl_id):
 def template_unbind_group_get():
     tpl_id = request.args.get('tpl_id', '')
     grp_id = request.args.get('grp_id', '')
+    data = {'templateId': tpl_id, 'hostgroupId': grp_id}
+    alarmAdUrl = config.JSONCFG['shortcut']['falconUIC'] + "/api/v1/alarmadjust/whentempleteunbind"
     if not tpl_id:
         return jsonify(msg="tpl_id is blank")
 
@@ -98,6 +102,9 @@ def template_unbind_group_get():
         return jsonify(msg="grp_id is blank")
 
     GrpTpl.unbind(grp_id, tpl_id)
+    respCode = post2FeUpdateEventCase(alarmAdUrl, data)
+    if respCode != 200:
+        log.error(alarmAdUrl + " got " + str(respCode) + " with " + str(data))
     return jsonify(msg='')
 
 
@@ -176,6 +183,8 @@ def template_help_get():
 def template_delete_get(tpl_id):
     tpl_id = int(tpl_id)
     t = Template.get(tpl_id)
+    data = {'templateId': tpl_id}
+    alarmAdUrl = config.JSONCFG['shortcut']['falconUIC'] + "/api/v1/alarmadjust/whentempletedeleted"
     if not t:
         return jsonify(msg='no such template')
 
@@ -190,6 +199,9 @@ def template_delete_get(tpl_id):
     Strategy.delete('tpl_id = %s', [tpl_id])
 
     GrpTpl.unbind_tpl(tpl_id)
+    respCode = post2FeUpdateEventCase(alarmAdUrl, data)
+    if respCode != 200:
+        log.error(alarmAdUrl + " got " + str(respCode) + " with " + str(data))
     return jsonify(msg='')
 
 

@@ -3,7 +3,10 @@ __author__ = 'Ulric Qin'
 from web import app
 from flask import request, jsonify
 from web.model.strategy import Strategy
-
+from frame import config
+from fe_api import post2FeUpdateEventCase
+import logging
+log = logging.getLogger(__name__)
 
 @app.route('/strategy/update', methods=['POST'])
 def strategy_update_post():
@@ -19,7 +22,8 @@ def strategy_update_post():
     run_begin = request.form['run_begin'].strip()
     run_end = request.form['run_end'].strip()
     tpl_id = request.form['tpl_id'].strip()
-
+    data = {'id': sid}
+    alarmAdUrl = config.JSONCFG['shortcut']['falconUIC'] + "/api/v1/alarmadjust/whenstrategyupdated"
     if not metric:
         return jsonify(msg='metric is blank')
 
@@ -47,6 +51,9 @@ def strategy_update_post():
             'id=%s',
             [sid]
         )
+        respCode = post2FeUpdateEventCase(alarmAdUrl, data)
+        if respCode != 200:
+            log.error(alarmAdUrl + " got " + str(respCode) + " with " + str(data))
         return jsonify(msg='')
 
     # insert
@@ -65,6 +72,9 @@ def strategy_update_post():
             'tpl_id': tpl_id
         }
     )
+    respCode = post2FeUpdateEventCase(alarmAdUrl, data)
+    if respCode != 200:
+        log.error(alarmAdUrl + " got " + str(respCode) + " with " + str(data))
     return jsonify(msg='')
 
 
@@ -82,9 +92,13 @@ def strategy_get(sid):
 def strategy_delete_get(sid):
     sid = int(sid)
     s = Strategy.get(sid)
+    data = {'id': sid}
+    alarmAdUrl = config.JSONCFG['shortcut']['falconUIC'] + "/api/v1/alarmadjust/whenstrategydeleted"
     if not s:
         return jsonify(msg='no such strategy')
 
     Strategy.delete_one(sid)
-
+    respCode = post2FeUpdateEventCase(alarmAdUrl, data)
+    if respCode != 200:
+        log.error(alarmAdUrl + " got " + str(respCode) + " with " + str(data))
     return jsonify(msg='')
