@@ -60,11 +60,10 @@ def group_hosts_list(group_id):
 def host_remove_post():
     group_id = int(request.form['grp_id'].strip())
     host_ids = request.form['host_ids'].strip()
-    host_ids.split(",")
     alarmAdUrl = config.JSONCFG['shortcut']['falconUIC'] + "/api/v1/alarmadjust/whenendpointunbind"
+    GroupHost.unbind(group_id, host_ids)
     for host_id in host_ids.split(","):
         data = {'hostgroupId': group_id, 'hostId': host_id}
-        GroupHost.unbind(group_id, host_ids)
         respCode = post2FeUpdateEventCase(alarmAdUrl, data)
         if respCode != 200:
             log.error(alarmAdUrl + " got " + str(respCode) + " with " + str(data))
@@ -77,9 +76,14 @@ def host_maintain_post():
     begin = int(request.form['begin'].strip())
     end = int(request.form['end'].strip())
     host_ids = request.form['host_ids'].strip()
+    alarmAdUrl = config.JSONCFG['shortcut']['falconUIC'] + "/api/v1/alarmadjust/whenendpointonmaintain"
     if begin <= 0 or end <= 0:
         return jsonify(msg='begin or end is invalid')
-
+    for host_id in host_ids.split(","):
+        data = {'hostId': host_id}
+        respCode = post2FeUpdateEventCase(alarmAdUrl, data)
+        if respCode != 200:
+            log.error(alarmAdUrl + " got " + str(respCode) + " with " + str(data))
     return jsonify(msg=Host.maintain(begin, end, host_ids))
 
 
