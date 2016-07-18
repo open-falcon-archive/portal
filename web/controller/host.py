@@ -9,6 +9,7 @@ from web.model.host import Host
 from web.model.template import Template
 from frame import config
 from fe_api import post2FeUpdateEventCase
+import time
 import logging
 log = logging.getLogger(__name__)
 
@@ -80,7 +81,7 @@ def host_maintain_post():
     if begin <= 0 or end <= 0:
         return jsonify(msg='begin or end is invalid')
     for host_id in host_ids.split(","):
-        data = {'hostId': host_id}
+        data = {'hostId': host_id, 'maintainBegin': begin, 'maintainEnd': end}
         respCode = post2FeUpdateEventCase(alarmAdUrl, data)
         if respCode != 200:
             log.error(alarmAdUrl + " got " + str(respCode) + " with " + str(data))
