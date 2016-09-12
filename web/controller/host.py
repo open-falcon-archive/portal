@@ -116,6 +116,7 @@ def host_add_post():
     failure = []
 
     for h in safe_host_arr:
+        h = h.strip()
         msg = GroupHost.bind(group_id, h)
         if not msg:
             success.append('%s<br>' % h)
