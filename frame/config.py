@@ -40,4 +40,4 @@ JSONCFG['shortcut']['falconUIC']        = "http://127.0.0.1:1234"
 try:
     from frame.local_config import *
 except Exception, e:
-    print "[warning] %s" % e
+    print('level=warning msg="%s"' % e)
