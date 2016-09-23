@@ -11,9 +11,9 @@ app = Flask(__name__)
 app.config.from_object("frame.config")
 
 # config log
-log_formatter = '%(asctime)s\t[%(filename)s:%(lineno)d] [%(levelname)s: %(message)s]'
+log_formatter = 'time="%(asctime)s" level=%(levelname)s msg="%(message)s"'
 log_level = logging.DEBUG if app.config['DEBUG'] else logging.WARNING
-logging.basicConfig(format=log_formatter, datefmt="%Y-%m-%d %H:%M:%S", level=log_level)
+logging.basicConfig(format=log_formatter, datefmt="%Y-%m-%dT%H:%M:%S%z", level=log_level)
 
 IGNORE_PREFIX = ['/api', '/static']
 
