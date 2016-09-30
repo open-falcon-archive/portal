@@ -22,7 +22,8 @@ def delete_group(group_id=None):
 
 
 def rename(old_str=None, new_str=None, login_user=None):
-    print(old_str, new_str, login_user)
+    tup = (old_str, new_str, login_user)
+    print('msg="%s"' % (tup,))
     gs = HostGroup.select_vs(where='create_user = %s and come_from = %s', params=[login_user, 1])
     for g in gs:
         HostGroup.update_dict({'grp_name': g.grp_name.replace(old_str, new_str)}, 'id=%s', [g.id])

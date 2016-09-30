@@ -16,14 +16,14 @@ def post2FeUpdateEventCase(url, data):
             mtries = 1
         except urllib2.HTTPError as e:
             msg = "%s, Retrying in %d seconds..." % (str(e),mdelay)
-            print(msg)
+            print('msg="%s"' % msg)
             resp_code = e.code
             time.sleep(mdelay)
             mdelay *= backoff
             mtries -= 1 
         except Exception as e:
             msg = "%s, Retrying in %d seconds..." % (str(e),mdelay)
-            print(msg)
+            print('msg="%s"' % msg)
             log.warning(msg)
             if mtries == 2:
                 resp_code = 500
