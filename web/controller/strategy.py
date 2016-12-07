@@ -32,7 +32,14 @@ def strategy_update_post():
 
     if metric == 'net.port.listen' and '=' not in tags:
         return jsonify(msg='if metric is net.port.listen, tags should like port=22')
-
+    need_reset = False
+    if sid:
+        st = Strategy.get(sid)
+        if (st.func != func or st.right_value != right_value or st.op != op or st.metric != metric or st.tags !=
+                tags):
+            need_reset = True
+        log.debug("need_reset: " + str(need_reset))
+        log.debug(str(st.to_json()))
     if sid:
         # update
         Strategy.update_dict(
@@ -51,9 +58,10 @@ def strategy_update_post():
             'id=%s',
             [sid]
         )
-        respCode = post2FeUpdateEventCase(alarmAdUrl, data)
-        if respCode != 200:
-            log.error(alarmAdUrl + " got " + str(respCode) + " with " + str(data))
+        if need_reset:
+            respCode = post2FeUpdateEventCase(alarmAdUrl, data)
+            if respCode != 200:
+                log.error(alarmAdUrl + " got " + str(respCode) + " with " + str(data))
         return jsonify(msg='')
 
     # insert
