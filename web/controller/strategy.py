@@ -32,12 +32,14 @@ def strategy_update_post():
 
     if metric == 'net.port.listen' and '=' not in tags:
         return jsonify(msg='if metric is net.port.listen, tags should like port=22')
-    st = Strategy.get(sid)
     need_reset = False
-    if st.func != func or st.right_value != right_value or st.op != op or st.metric != metric or st.tags != tags:
-        need_reset = True
-    log.debug("need_reset: " + str(need_reset))
-    log.debug(str(st.to_json()))
+    if sid:
+        st = Strategy.get(sid)
+        if (st.func != func or st.right_value != right_value or st.op != op or st.metric != metric or st.tags !=
+                tags):
+            need_reset = True
+        log.debug("need_reset: " + str(need_reset))
+        log.debug(str(st.to_json()))
     if sid:
         # update
         Strategy.update_dict(
