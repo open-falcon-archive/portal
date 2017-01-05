@@ -9,7 +9,7 @@ falcon portal
     $ virtualenv ./env
 
     # use douban pypi
-    $ ./env/bin/pip install -r pip_requirements.txt -i http://pypi.douban.com/simple
+    $ ./env/bin/pip install -r requirements.txt -i http://pypi.douban.com/simple
 
 
 ## Init database and config
@@ -19,7 +19,10 @@ falcon portal
 
 ## Start
 
-    $ ./env/bin/python wsgi.py
+    $ cp .env.example .env
+
+    $ . env/bin/activate
+    $ env `cat .env | xargs` python wsgi.py
 
     --> goto http://127.0.0.1:5050
 
@@ -27,8 +30,8 @@ falcon portal
 ## Run with gunicorn
 
     $ . env/bin/activate
-    $ bash run.sh
-    
+    $ env `cat .env 2>/dev/null | xargs` gunicorn -c gunicorn.conf wsgi:app
+
     --> goto http://127.0.0.1:5050
 
 

@@ -9,9 +9,10 @@
         <button type="button" onclick="query_expression();" class="btn btn-default">
             <span class="glyphicon glyphicon-search"></span>
         </button>
+        <label>
         <input type="checkbox" name="mine" id="mine" {% if data.mine == '1' %}checked="checked"{% endif %}>
         <span>mine</span>
-
+        </label>
         <div class="pull-right">
             <a href="{{ url_for('expression_add_get') }}" class="btn btn-default">
                 <span class="glyphicon glyphicon-plus"></span>

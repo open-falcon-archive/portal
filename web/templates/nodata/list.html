@@ -27,8 +27,10 @@
         <button type="button" onclick="query_nodata();" class="btn btn-default">
             <span class="glyphicon glyphicon-search"></span>
         </button>
-        <input type="checkbox" name="mine" id="mine" {% if data.mine == '1' %}checked="checked"{% endif %}>
-        <span>mine</span>
+  <label>
+      <input type="checkbox" name="mine" id="mine" {% if data.mine == '1' %}checked="checked"{% endif %}>
+      <span>mine</span>
+  </label>
 
         <div class="pull-right">
             <a href="{{ url_for('nodata_add_get') }}" class="btn btn-default">
@@ -42,7 +44,7 @@
             <hr/>
             <div>{{ v.name }}; {{ v.obj_type }} [{{ v.obj }}]/{{ v.metric }}/{{ v.tags }};&nbsptype={{ v.dstype }},step={{ v.step }}</div>
             <div class="mt10 gray">
-                <span class="gray">默认值: {{ v.mock }}</span> 
+                <span class="gray">默认值: {{ v.mock }}</span>
                 {% if v.writable(g.user_name) %}
                     <div class="pull-right">
                         <a href="{{ url_for('nodata_add_get', id=v.id) }}" class="btn btn-default"
