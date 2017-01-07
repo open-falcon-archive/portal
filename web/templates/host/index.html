@@ -13,9 +13,11 @@
         <button type="button" onclick="query_host();" class="btn btn-default">
             <span class="glyphicon glyphicon-search"></span>
         </button>
-        <input type="checkbox" name="maintaining" id="maintaining"
-               {% if data.maintaining == '1' %}checked="checked"{% endif %}>
-        <span>maintaining</span>
+        <label>
+          <input type="checkbox" name="maintaining" id="maintaining"
+                 {% if data.maintaining == '1' %}checked="checked"{% endif %}>
+          <span>maintaining</span>
+        </label>
 
         <div class="pull-right">
             <span class="green">

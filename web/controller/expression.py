@@ -6,6 +6,7 @@ from web.model.expression import Expression
 from web.model.action import Action
 from frame.params import required_chk
 from frame.config import UIC_ADDRESS
+from frame import config
 
 
 @app.route('/expressions')
@@ -28,7 +29,8 @@ def expressions_get():
             'limit': limit,
             'page': page,
             'mine': mine,
-        }
+        }, 
+        config=config
     )
 
 
@@ -46,8 +48,10 @@ def expression_add_get():
     o = Expression.get(int(request.args.get('id', '0').strip()))
     if o:
         a = Action.get(o.action_id)
-    return render_template('expression/add.html',
-                           data={'action': a, 'expression': o, 'uic_address': UIC_ADDRESS['external']})
+    return render_template(
+            'expression/add.html',
+            data={'action': a, 'expression': o, 'uic_address': UIC_ADDRESS['external']},
+            config=config)
 
 
 @app.route('/expression/update', methods=['POST'])
@@ -132,4 +136,7 @@ def expression_view_get(eid):
         a = Action.get(o.action_id)
     else:
         return 'no such expression'
-    return render_template('expression/view.html', data={'action': a, 'expression': o})
+    return render_template(
+            'expression/view.html', 
+            data={'action': a, 'expression': o},
+            config=config)

@@ -11,9 +11,9 @@ app = Flask(__name__)
 app.config.from_object("frame.config")
 
 # config log
-log_formatter = '%(asctime)s\t[%(filename)s:%(lineno)d] [%(levelname)s: %(message)s]'
+log_formatter = 'time="%(asctime)s" level=%(levelname)s msg="%(message)s"'
 log_level = logging.DEBUG if app.config['DEBUG'] else logging.WARNING
-logging.basicConfig(format=log_formatter, datefmt="%Y-%m-%d %H:%M:%S", level=log_level)
+logging.basicConfig(format=log_formatter, datefmt="%Y-%m-%dT%H:%M:%S%z", level=log_level)
 
 IGNORE_PREFIX = ['/api', '/static']
 
@@ -38,25 +38,16 @@ def before_request():
         if p.startswith(ignore_pre):
             return
 
-    if 'user_name' in session and session['user_name']:
-        g.user_name = session['user_name']
-    else:
-        sig = request.cookies.get('sig')
-        if not sig:
-            return redirect_to_sso()
-
+    sig = request.cookies.get('sig')
+    if not sig:
+        return redirect_to_sso()
+    elif 'user_name' not in g:
         username = uic.username_from_sso(sig)
-        if not username:
-            return redirect_to_sso()
-
-        session['user_name'] = username
-        g.user_name = session['user_name']
+        g.user_name = username
 
 
 def redirect_to_sso():
-    sig = uic.gen_sig()
-    resp = make_response(redirect(uic.login_url(sig, urllib.quote(request.url))))
-    resp.set_cookie('sig', sig)
+    resp = make_response(redirect(uic.login_url()))
     return resp
 
 

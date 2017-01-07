@@ -9,8 +9,10 @@
         <button type="button" onclick="query_template();" class="btn btn-default">
             <span class="glyphicon glyphicon-search"></span>
         </button>
+        <label>
         <input type="checkbox" name="mine" id="mine" {% if data.mine == '1' %}checked="checked"{% endif %}>
         <span>mine</span>
+        </label>
 
         <div class="pull-right">
             <input type="text" placeholder="input name to create" class="form-control" id="tpl_name"

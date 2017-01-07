@@ -7,6 +7,7 @@ from web.model.host_group import HostGroup
 from web.model.grp_tpl import GrpTpl
 from web.service import group_service
 from frame.config import UIC_ADDRESS
+from frame import config
 
 
 @app.route('/group/create', methods=['POST'])
@@ -55,7 +56,7 @@ def group_update_post(group_id):
 
 @app.route('/group/advanced')
 def group_advanced_get():
-    return render_template('group/advanced.html')
+    return render_template('group/advanced.html', config=config)
 
 
 @app.route('/group/rename', methods=['POST'])
@@ -77,7 +78,8 @@ def group_templates_get(grp_id):
 
     ts = GrpTpl.tpl_list(grp_id)
 
-    return render_template('group/templates.html', group=grp, ts=ts, uic_address=UIC_ADDRESS['external'])
+    return render_template('group/templates.html', group=grp, ts=ts, 
+                            uic_address=UIC_ADDRESS['external'], config=config)
 
 
 @app.route('/group/bind/template')

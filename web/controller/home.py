@@ -26,6 +26,7 @@ def home_get():
             'mine': mine,
             'is_root': g.user_name in config.MAINTAINERS,
             'community': config.COMMUNITY,
-        }
+        },
+        config=config
     )
 

@@ -49,4 +49,5 @@ docs/_build/
 /frame/local_config.py
 /falcon-portal*
 /gitversion
+.env
 

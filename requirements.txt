@@ -4,3 +4,4 @@ Werkzeug==0.9.4
 gunicorn==19.3.0
 requests==2.3.0
 mysql-python
+python-decouple

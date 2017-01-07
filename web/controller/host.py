@@ -7,7 +7,11 @@ from web.model.group_host import GroupHost
 from web.model.grp_tpl import GrpTpl
 from web.model.host import Host
 from web.model.template import Template
-
+from frame import config
+from fe_api import post2FeUpdateEventCase
+import time
+import logging
+log = logging.getLogger(__name__)
 
 @app.route('/group/<group_id>/hosts.txt')
 def group_hosts_export(group_id):
@@ -48,7 +52,8 @@ def group_hosts_list(group_id):
             'page': page,
             'maintaining': maintaining,
             'group': group,
-        }
+        },
+        config=config
     )
 
 
@@ -56,7 +61,14 @@ def group_hosts_list(group_id):
 def host_remove_post():
     group_id = int(request.form['grp_id'].strip())
     host_ids = request.form['host_ids'].strip()
+    alarmAdUrl = config.JSONCFG['shortcut']['falconUIC'] + "/api/v1/alarmadjust/whenendpointunbind"
     GroupHost.unbind(group_id, host_ids)
+    for host_id in host_ids.split(","):
+        data = {'hostgroupId': group_id, 'hostId': host_id}
+        respCode = post2FeUpdateEventCase(alarmAdUrl, data)
+        if respCode != 200:
+            log.error(alarmAdUrl + " got " + str(respCode) + " with " + str(data))
+            return jsonify(msg='delete host is failed , please try again!')
     return jsonify(msg='')
 
 
@@ -65,9 +77,14 @@ def host_maintain_post():
     begin = int(request.form['begin'].strip())
     end = int(request.form['end'].strip())
     host_ids = request.form['host_ids'].strip()
+    alarmAdUrl = config.JSONCFG['shortcut']['falconUIC'] + "/api/v1/alarmadjust/whenendpointonmaintain"
     if begin <= 0 or end <= 0:
         return jsonify(msg='begin or end is invalid')
-
+    for host_id in host_ids.split(","):
+        data = {'hostId': host_id, 'maintainBegin': begin, 'maintainEnd': end}
+        respCode = post2FeUpdateEventCase(alarmAdUrl, data)
+        if respCode != 200:
+            log.error(alarmAdUrl + " got " + str(respCode) + " with " + str(data))
     return jsonify(msg=Host.maintain(begin, end, host_ids))
 
 
@@ -89,7 +106,7 @@ def host_add_get():
     if not group:
         return jsonify(msg='no such group')
 
-    return render_template('host/add.html', group=group)
+    return render_template('host/add.html', group=group, config=config)
 
 
 @app.route('/host/add', methods=['POST'])
@@ -139,7 +156,7 @@ def host_groups_get(host_id):
 
     group_ids = GroupHost.group_ids(h.id)
     groups = [HostGroup.read('id = %s', [group_id]) for group_id in group_ids]
-    return render_template('host/groups.html', groups=groups, host=h)
+    return render_template('host/groups.html', groups=groups, host=h, config=config)
 
 
 @app.route('/host/<host_id>/templates')
@@ -155,12 +172,14 @@ def host_templates_get(host_id):
     templates = GrpTpl.tpl_set(group_ids)
     for v in templates:
         v.parent = Template.get(v.parent_id)
-    return render_template('host/templates.html', **locals())
+    return render_template('host/templates.html', config=config, **locals())
 
 
 @app.route('/host/unbind')
 def host_unbind_get():
     host_id = request.args.get('host_id', '').strip()
+    data = {'hostgroupId': group_id, 'hostId': host_id}
+    alarmAdUrl = config.JSONCFG['shortcut']['falconUIC'] + "/api/v1/alarmadjust/whenendpointunbind"
     if not host_id:
         return jsonify(msg='host_id is blank')
 
@@ -169,4 +188,7 @@ def host_unbind_get():
         return jsonify(msg='group_id is blank')
 
     GroupHost.unbind(int(group_id), host_id)
+    respCode = post2FeUpdateEventCase(alarmAdUrl, data)
+    if respCode != 200:
+        log.error(alarmAdUrl + " got " + str(respCode) + " with " + str(data))
     return jsonify(msg='')

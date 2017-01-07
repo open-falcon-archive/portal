@@ -11,6 +11,7 @@ from web.model.host import Host
 from web.model.expression import Expression
 from web.model.strategy import Strategy
 from frame import utils
+from frame import config
 
 
 @app.route('/api/version')
@@ -95,7 +96,7 @@ def api_pings_get():
 
 @app.route('/api/debug')
 def api_debug():
-    return render_template('debug/index.html')
+    return render_template('debug/index.html', config=config)
 
 
 @app.route('/api/group/<grp_name>/hosts.json')
@@ -109,4 +110,3 @@ def api_group_hosts_json(grp_name):
     vs, _ = Host.query(1, 10000000, '', '0', group.id)
     names = [v.hostname for v in vs]
     return jsonify(msg='', data=names)
-
