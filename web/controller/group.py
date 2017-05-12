@@ -11,7 +11,7 @@ from frame.config import UIC_ADDRESS
 @app.route('/group/list')
 def group_list_get():
     groups = HostGroup.all_groups_dict()
-    return jsonify(msg='ok',data=groups)
+    return jsonify(msg='',data=groups)
 
 @app.route('/group/create', methods=['POST'])
 def group_create_post():
