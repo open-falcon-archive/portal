@@ -54,6 +54,11 @@ class HostGroup(Bean):
         return [{'id': row[0], 'name': row[1]} for row in rows]
 
     @classmethod
+    def all_groups_dict(cls):
+        rows = db.query_all('select id, grp_name, create_user from grp')
+        return [{'id': row[0], 'name': row[1], 'create_user': row[2]} for row in rows]
+
+    @classmethod
     def all_set(cls):
         sql = 'select id, grp_name from %s' % cls._tbl
         rows = db.query_all(sql)
