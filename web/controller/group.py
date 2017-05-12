@@ -8,6 +8,10 @@ from web.model.grp_tpl import GrpTpl
 from web.service import group_service
 from frame.config import UIC_ADDRESS
 
+@app.route('/group/list')
+def group_list_get():
+    groups = HostGroup.all_groups_dict()
+    return jsonify(msg='',data=groups)
 
 @app.route('/group/create', methods=['POST'])
 def group_create_post():

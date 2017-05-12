@@ -56,7 +56,9 @@ def group_hosts_list(group_id):
 def host_remove_post():
     group_id = int(request.form['grp_id'].strip())
     host_ids = request.form['host_ids'].strip()
-    GroupHost.unbind(group_id, host_ids)
+    hostid_arr = host_ids.splitlines()
+    for hid in hostid_arr:
+        GroupHost.unbind(group_id, int(hid))
     return jsonify(msg='')
 
 
@@ -116,7 +118,6 @@ def host_add_post():
     failure = []
 
     for h in safe_host_arr:
-        h = h.strip()
         msg = GroupHost.bind(group_id, h)
         if not msg:
             success.append('%s<br>' % h)
@@ -170,3 +171,8 @@ def host_unbind_get():
 
     GroupHost.unbind(int(group_id), host_id)
     return jsonify(msg='')
+
+@app.route('/host/list')
+def host_list_get():
+    hosts=Host.all_host_dict()
+    return jsonify(msg='', data=hosts)
